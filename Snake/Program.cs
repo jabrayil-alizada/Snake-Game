@@ -25,6 +25,7 @@ namespace Snake
 
             Snake snake = new Snake(p1, 5, Direction.DOWN);
             snake.Drow();
+            snake.Move();
 
             Console.ReadLine();
         }
