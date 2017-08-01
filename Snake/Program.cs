@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Snake
@@ -27,7 +28,18 @@ namespace Snake
             snake.Drow();
             snake.Move();
 
-            Console.ReadLine();
+            while (true)
+            {
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    snake.handleKey(key.Key);
+                }
+                Thread.Sleep(100);
+                snake.Move();
+            }
+
+            //Console.ReadLine();
         }
     }
 }
