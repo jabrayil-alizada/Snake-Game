@@ -41,7 +41,7 @@ namespace Snake
             return nextPoint;
         }
 
-        public void handleKey(ConsoleKey key)
+        public void HandleKey(ConsoleKey key)
         {
             switch (key)
             {
@@ -57,6 +57,23 @@ namespace Snake
                 case ConsoleKey.UpArrow:
                     direction = Direction.UP;
                     break;
+            }
+        }
+
+        internal bool Eat(Point food)
+        {
+            Point head = getNextPoint();
+            if (head.IsHit(food))
+            {
+                food.sym = head.sym;
+                head.Draw();
+                pList.Add(food);
+
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }
