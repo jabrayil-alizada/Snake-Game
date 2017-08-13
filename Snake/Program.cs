@@ -9,6 +9,8 @@ namespace Snake
 {
     class Program
     {
+        public const int initialSnakesLength = 4;
+
         static void Main(string[] args)
         {
             //Console.SetBufferSize(81, 26);
@@ -18,7 +20,7 @@ namespace Snake
 
             //Drowing points
             Point p = new Point(2, 5, '*');
-            Snake snake = new Snake(p, 4, Direction.RIGHT);
+            Snake snake = new Snake(p, initialSnakesLength, Direction.RIGHT);
             snake.Drow();
 
             FoodCreator foodCreator = new FoodCreator(80, 25, '$');
@@ -48,12 +50,30 @@ namespace Snake
                 }
             }
 
-            //Console.ReadLine();
+            WriteGameOver(snake);
+            Console.ReadLine();
         }
 
-        //static void Draw(Figure figure)
-        //{
-        //    figure.Drow();
-        //}
+        static void WriteGameOver(Snake snake)
+        {
+            int xOffset = 25;
+            int yOffset = 8;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(xOffset, yOffset++);
+            WriteText("============================", xOffset, yOffset++);
+            WriteText("G A M E    O V E R", xOffset + 5, yOffset++);
+            WriteText("============================", xOffset, yOffset++);
+            WriteText("Your score: " + (snake.score - initialSnakesLength), xOffset + 2, yOffset++);
+            WriteText("============================", xOffset, yOffset++);
+            WriteText("Author: Jabrayil Alizada", xOffset + 2, yOffset++);
+            WriteText("============================", xOffset, yOffset++);
+        }
+
+        static void WriteText(String text, int xOffset, int yOffset)
+        {
+            Console.SetCursorPosition(xOffset, yOffset);
+            Console.WriteLine(text);
+        }
+
     }
 }

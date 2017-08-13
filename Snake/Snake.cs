@@ -28,6 +28,7 @@ namespace Snake
             pList.Remove(tail);
             Point head = getNextPoint();
             pList.Add(head);
+            score = pList.Count;
 
             tail.Clear();
             head.Draw();
